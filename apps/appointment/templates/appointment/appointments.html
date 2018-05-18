@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <title>Login</title>
+    </head>
+<body>
+    <div class="container">
+      <div class="row">
+
+        <!-- Register -->
+        <div class="col-12">
+            <h2>Welcome, {{ name }}</h2>  <a href="/">Logout</a>
+
+            <h5>Here are you appointment for today, {{ today }}</h5>
+                    <div class="form-group">
+                        <tr>
+                            <th>Tasks</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Actione</th>
+                        </tr>
+                        {% if appointments %}
+                            {% for appointment in appointments %}
+{#                                {% if appointment.date == {{ today }} %}#}
+                            <tr>
+                                <td>{{ appointment.task }}</td>
+                                <td>{{ appointment.time }}</td>
+                                <td>{{ appointment.status }}</td>
+                                <td><a href="/appointment/{{ appointment.id }}">Edit</a> <a href="/appointent/delete/{{ appointment.id }}" >Delete</a></td>
+                            </tr>
+{#                                {% endif %}#}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <h5>Here are other appointments</h5>
+                                <div class="form-group">
+                                    <tr>
+                                        <th>Tasks</th>
+                                        <th>Data</th>
+                                        <th>Time</th>
+                                    </tr>
+                                    {% if appointments %}
+                                        {% for appointment in appointments %}
+            {#                                {% if appointment.date == {{ today }} %}#}
+                                        <tr>
+                                            <td>{{ appointment.task }}</td>
+                                            <td>{{ appointment.date }}</td>
+                                            <td>{{ appointment.time }}</td>
+                                        </tr>
+            {#                                {% endif %}#}
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                    <div class="form-group">
+                        <h5>Add Appointment</h5>
+                        <form action="/appointments/add" method="post">
+                             {% csrf_token %}
+                            Date <input type="text" name="date">
+                            Time: <input type="text" name="time">
+                            Statu:<input type="text" name="status">
+                            Tasks: <input type="text" name="task">
+
+                            <input type="submit">
+                        </form>
+
+
+        </div>
+
+
+      </div>
+    </div>
+</body>
+</html>

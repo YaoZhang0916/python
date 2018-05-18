@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <title>Login</title>
+    </head>
+<body>
+    <div class="container">
+      <div class="row">
+
+        <!-- Register -->
+        <div class="col-4">
+            <h1>Register</h1>
+             <form action="/appointments" method="post">
+                {% csrf_token %}
+                    <div class="form-group">
+                        Tasks: <input type="text" name="task" class="form-control" id="name" placeholder="Enter Tasks">
+                    </div>
+
+                    <div class="form-group">
+                    Status:
+                    <select name="status">
+                        <option value="Done">Done</option>
+                        <option value="Penging">Penging</option>
+                        <option value="Missed">Missed</option>
+                    </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Date">Data: </label>
+                        <input type="text" name="date" class="form-control" id="password" placeholder="Enter data">
+                    </div>
+                    <div class="form-group">
+                        <label for="Time">Time: </label>
+                        <input type="text" name="time" class="form-control" id="confirm_password" placeholder="Enter time">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-lg btn-primary" value="Update">
+                    </div>
+             </form>
+        </div>
+
+          <div class="message col-4" >
+                {% if messages %}
+                    {% for message in messages %}
+                        <li>{{message}}</li>
+                    {% endfor %}
+                {% endif %}
+          </div>
+      </div>
+    </div>
+</body>
+</html>
